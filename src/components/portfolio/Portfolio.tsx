@@ -259,8 +259,8 @@ export function Portfolio() {
             <ContactRow
               icon={<Mail className="h-4 w-4" />}
               label="Email"
-              value="vasudhan@uw.edu"
-              href="mailto:vasudhan@uw.edu"
+              value="vasudhan10@gmail.com"
+              href="mailto:vasudhan10@gmail.com"
             />
             <ContactRow
               icon={<Phone className="h-4 w-4" />}

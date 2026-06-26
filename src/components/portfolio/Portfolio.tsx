@@ -66,6 +66,17 @@ const PROJECTS: Project[] = [
     href: "https://github.com/vasudhanarayanan",
     tone: "blush",
   },
+  {  
+    title: "Screen Time Stocks",
+    tagline: "Full-stack web app · Gamification",
+    description:
+      "Gamifies screen time as a stock portfolio — each app is a ticker whose price fluctuates daily based on usage vs. 
+  goals. TradingView-style charts (lightweight-charts), batch logging, friend leaderboards via invite codes, and a price
+  engine with capped volatility.",
+    tech: ["React", "Express", "SQLite", "Lightweight Charts"],
+    href: "https://github.com/vasudhanarayanan/screen-time-stocks",
+    tone: "sky",
+  },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {

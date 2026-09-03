@@ -3,9 +3,43 @@ import { Mail, Github, Linkedin, Phone, ArrowUpRight, FileText } from "lucide-re
 
 const NAV = [
   { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
   { href: "#education", label: "Education" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
+];
+
+type Experience = {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  bullets: string[];
+};
+
+const EXPERIENCE: Experience[] = [
+  {
+    company: "Amazon",
+    role: "Software Development Engineer Intern",
+    period: "Jun 2026 – Sep 2026",
+    location: "Seattle, WA",
+    bullets: [
+      "Owned the end-to-end design and implementation of the production evaluation infrastructure for an internal LLM agent that queries structured data, replacing subjective reviews with objective accuracy metrics across six core capabilities.",
+      "Architected a five-dimensional evaluation pipeline validated against 150+ versioned ground-truth test cases, cutting evaluation turnaround from two days to 20 minutes.",
+      "Integrated automated quality gates into CI/CD, creating a production evaluation history engineers use to catch regressions and validate model improvements.",
+    ],
+  },
+  {
+    company: "Amazon",
+    role: "Software Development Engineer Intern",
+    period: "Jun 2025 – Sep 2025",
+    location: "Seattle, WA",
+    bullets: [
+      "Designed and implemented a backend service powering promotional navigation across every Amazon.com page worldwide, reducing deployment time from two weeks to 20 minutes and supporting every major shopping event since launch.",
+      "Built a configuration-driven platform that let engineers launch promotional navigation updates without code changes, enabling zero-downtime rollouts for Prime Day, Black Friday, and Holiday.",
+      "Added deployment validation, monitoring, and alarming to CI/CD pipelines, reducing deployment errors and letting 15+ teams independently manage promotional configurations.",
+    ],
+  },
 ];
 
 const COURSEWORK = [
@@ -172,6 +206,36 @@ export function Portfolio() {
           </div>
         </section>
 
+        {/* Experience */}
+        <section id="experience" className="border-t border-border/60 py-24">
+          <SectionLabel>Experience</SectionLabel>
+          <div className="mt-10 space-y-12">
+            {EXPERIENCE.map((e, i) => (
+              <div
+                key={`${e.company}-${i}`}
+                className="grid gap-4 md:grid-cols-[1fr_2.2fr]"
+              >
+                <div>
+                  <h3 className="font-display text-2xl leading-tight">{e.company}</h3>
+                  <p className="mt-1 text-sm text-foreground/80">{e.role}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{e.period}</p>
+                  <p className="text-sm text-muted-foreground">{e.location}</p>
+                </div>
+                <ul className="space-y-3">
+                  {e.bullets.map((b, bi) => (
+                    <li
+                      key={bi}
+                      className="relative pl-5 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary/70"
+                    >
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Education */}
         <section id="education" className="border-t border-border/60 py-24">
           <SectionLabel>Education</SectionLabel>
@@ -184,11 +248,7 @@ export function Portfolio() {
                 B.S. Computer Science · Seattle, WA
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Expected June 2027
-              </p>
-              <p className="mt-6 text-sm text-muted-foreground">
-                2× Software Development Engineer Intern at{" "}
-                <span className="text-foreground">Amazon</span> (Summer 2025, Summer 2026).
+                Minor in Data Science · Expected June 2027
               </p>
             </div>
             <div>

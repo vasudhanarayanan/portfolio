@@ -31,12 +31,30 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    title: "Spotify Listening Statistics",
-    tagline: "React SPA · OAuth · Multi-API",
+    title: "mini-git",
+    tagline: "Systems · Rust",
     description:
-      "Full-stack React app using Spotify PKCE OAuth to visualize top tracks, artists, and albums. Integrates the Ticketmaster API to surface upcoming concerts for the user's favorite artists.",
-    tech: ["React", "Vite", "Tailwind", "Spotify API", "Ticketmaster API"],
-    href: "https://github.com/vasudhanarayanan/spotify-dashboard",
+      "A minimal Git implementation built from scratch in Rust — no libgit2, no shelling out. Content-addressable object store (SHA-1 + zlib), a commit DAG, staging index, branches and detached HEAD, LCS-based diffing, and three-way merge with fast-forward and conflict detection.",
+    tech: ["Rust", "clap", "SHA-1", "zlib"],
+    href: "https://github.com/vasudhanarayanan/mini-git",
+    tone: "sky",
+  },
+  {
+    title: "depaudit",
+    tagline: "Security tooling · Go",
+    description:
+      "A Go CLI that scans npm dependency trees for supply-chain risk. Queries the OSV.dev database for known CVEs across the full transitive graph, flags copyleft license conflicts, detects unused dependencies via static import analysis, and ships a CI mode with non-zero exit codes and JSON output.",
+    tech: ["Go", "OSV.dev API", "Static analysis", "CI"],
+    href: "https://github.com/vasudhanarayanan/depaudit",
+    tone: "blush",
+  },
+  {
+    title: "Screen Time Stocks",
+    tagline: "Full-stack · Real-time",
+    description:
+      "Gamifies screen time as a stock portfolio — each app is a ticker whose price fluctuates on usage vs. goals via a capped-volatility price engine. TradingView-style charts, Google OAuth with JWT sessions, WebSocket-powered live leaderboards over invite-code markets, and an iOS Shortcuts API for automated logging.",
+    tech: ["React", "Express", "SQLite", "Socket.IO", "Google OAuth"],
+    href: "https://github.com/vasudhanarayanan/screen-time-stocks",
     tone: "sky",
   },
   {
@@ -52,29 +70,9 @@ const PROJECTS: Project[] = [
     title: "Page Summarizer",
     tagline: "Chrome extension · LLM",
     description:
-      "Manifest V3 Chrome extension summarizing webpages in real time with GPT-4o-mini streaming. Mozilla Readability extraction cuts token usage ~70%. Persistent side panel with multi-turn chat, caching, and cost tracking.",
+      "Manifest V3 Chrome extension summarizing webpages in real time with streaming LLM output. Mozilla Readability extraction cuts token usage ~70%. Persistent side panel with multi-turn chat, caching, and cost tracking.",
     tech: ["Chrome Extension", "JavaScript", "OpenAI API"],
     href: "https://github.com/vasudhanarayanan/page-summarizer",
-    tone: "sky",
-  },
-  {
-    title: "Cervical Spine Fracture Detector",
-    tagline: "Computer vision · CNN",
-    description:
-      "CNN-based model detecting cervical spine fractures from CT scans. Preprocessing, augmentation, and iteration across 10,000+ images yielded 92% validation accuracy. 1st place at state-level science fair.",
-    tech: ["Python", "TensorFlow", "SQL"],
-    href: "https://github.com/vasudhanarayanan",
-    tone: "blush",
-  },
-  {  
-    title: "Screen Time Stocks",
-    tagline: "Full-stack web app · Gamification",
-    description:
-      "Gamifies screen time as a stock portfolio — each app is a ticker whose price fluctuates daily based on usage vs. 
-  goals. TradingView-style charts (lightweight-charts), batch logging, friend leaderboards via invite codes, and a price
-  engine with capped volatility.",
-    tech: ["React", "Express", "SQLite", "Lightweight Charts"],
-    href: "https://github.com/vasudhanarayanan/screen-time-stocks",
     tone: "sky",
   },
 ];
@@ -218,14 +216,17 @@ export function Portfolio() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {PROJECTS.map((p) => (
-              <div
+              <a
                 key={p.title}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
                 className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all hover:-translate-y-0.5"
                 style={{ boxShadow: "var(--shadow-soft)" }}
               >
                 <div
                   className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-50 blur-2xl transition-opacity group-hover:opacity-80"
-                  style={{ background: "var(--sky)" }}
+                  style={{ background: `var(--${p.tone})` }}
                 />
                 <div className="relative flex items-start justify-between gap-3">
                   <div>
@@ -236,6 +237,7 @@ export function Portfolio() {
                       {p.title}
                     </h3>
                   </div>
+                  <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>
                 <p className="relative mt-4 text-sm leading-relaxed text-muted-foreground">
                   {p.description}
@@ -250,7 +252,7 @@ export function Portfolio() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>

@@ -209,30 +209,48 @@ export function Portfolio() {
         {/* Experience */}
         <section id="experience" className="border-t border-border/60 py-24">
           <SectionLabel>Experience</SectionLabel>
-          <div className="mt-10 space-y-12">
-            {EXPERIENCE.map((e, i) => (
-              <div
-                key={`${e.company}-${i}`}
-                className="grid gap-4 md:grid-cols-[1fr_2.2fr]"
-              >
-                <div>
-                  <h3 className="font-display text-2xl leading-tight">{e.company}</h3>
-                  <p className="mt-1 text-sm text-foreground/80">{e.role}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{e.period}</p>
-                  <p className="text-sm text-muted-foreground">{e.location}</p>
+          <h2 className="mt-6 max-w-2xl font-display text-4xl leading-tight sm:text-5xl">
+            Building systems that ship to millions.
+          </h2>
+
+          <div className="mt-12 grid gap-6">
+            {EXPERIENCE.map((e, i) => {
+              const tone = i % 2 === 0 ? "sky" : "blush";
+              return (
+                <div
+                  key={`${e.company}-${i}`}
+                  className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all hover:-translate-y-0.5"
+                  style={{ boxShadow: "var(--shadow-soft)" }}
+                >
+                  <div
+                    className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-50 blur-2xl transition-opacity group-hover:opacity-80"
+                    style={{ background: `var(--${tone})` }}
+                  />
+                  <div className="relative grid gap-4 md:grid-cols-[1fr_2.2fr]">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                        {e.period}
+                      </p>
+                      <h3 className="mt-2 font-display text-2xl leading-snug">
+                        {e.company}
+                      </h3>
+                      <p className="mt-1 text-sm text-foreground/80">{e.role}</p>
+                      <p className="text-sm text-muted-foreground">{e.location}</p>
+                    </div>
+                    <ul className="space-y-3">
+                      {e.bullets.map((b, bi) => (
+                        <li
+                          key={bi}
+                          className="relative pl-5 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary/70"
+                        >
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <ul className="space-y-3">
-                  {e.bullets.map((b, bi) => (
-                    <li
-                      key={bi}
-                      className="relative pl-5 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary/70"
-                    >
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
